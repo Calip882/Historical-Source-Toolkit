@@ -8,7 +8,7 @@
 
 It is designed for historians and digital-humanities researchers who need a dependable step between OCR and later analysis—not another OCR model, hosted service, or opaque AI system.
 
-> **中文简介：** `hst` 是一个面向历史研究的轻量 OCR 文本预处理工具。它可以导入单个 TXT 或逐页 TXT，完成 Unicode、空白、断行及基础页眉页脚清理，并始终保留“来源页码 → 清洗文本”的映射。项目不调用云 API，也不包含 OCR 模型或向量数据库。
+> `hst` 是一个面向历史研究的轻量 OCR 文本预处理工具。它可以导入单个 TXT 或逐页 TXT，完成 Unicode、空白、断行及基础页眉页脚清理，并始终保留“来源页码 → 清洗文本”的映射。项目不调用云 API，也不包含 OCR 模型或向量数据库。
 
 ## Why page mapping matters
 
